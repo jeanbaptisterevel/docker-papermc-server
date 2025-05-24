@@ -115,14 +115,13 @@ RUN apk add --no-cache gettext libudev-zero
 # PaperMC attempts to update these files at runtime, which requires write access.
 # While not strictly necessary, making them writable prevents annoying warnings in the logs.
 # Ideally, configs would be read-only to enforce immutability, but this is a trade-off for cleaner logs.
-COPY --chmod=770 runtime/config/base ./
-COPY --chmod=770 runtime/config/papermc config/
+COPY --chmod=770 runtime/config/ ./
 
 # Copy the server startup script.
 COPY --chmod=550 runtime/start.sh ./
 
 # Adjust permissions.
-RUN chmod 770 /opt/papermc /opt/papermc/config
+RUN chmod 770 /opt/papermc /opt/papermc/cue/
 
 # Minecraft port.
 EXPOSE 25565
